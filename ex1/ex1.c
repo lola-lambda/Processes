@@ -8,7 +8,26 @@
 
 int main(void)
 {
-    // Your code here
-
+    int x = 100;
+    pid_t pid = fork();
+    if (pid == 0) {
+        printf("child %d; initially x is %i\n", pid, x);
+        x = 50;
+        printf("child %d; now x is %i\n", pid, x);
+    } else {
+        printf("parent %d; initially x is %i\n", pid, x);
+        x = 20;
+        printf("parent %d; now x is %i\n", pid, x);
+    }
     return 0;
 }
+
+// outputs:
+// parent 44655; initially x is 100
+// parent 44655; now x is 20
+// child 0; initially x is 100
+// child 0; now x is 50
+
+// In this implementation, the child gets the original value of x, 
+// not the modified x from the parent. Both the parent and child can overwrite the value of x.
+// The end value of x will be the modification of the last process, which is the child in this case.
