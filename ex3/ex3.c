@@ -9,11 +9,11 @@
 
 int main(void)
 {
-    pid_t pid = fork();
+    int pid = fork();
     if (pid == 0) {
         printf("hello\n");
     } else {
-        wait(NULL);
+        waitpid(pid, NULL, 0);
         printf("goodbye\n");
     }
     return 0;
