@@ -10,7 +10,20 @@
 
 int main(void)
 {
-    // Your code here    
-
+    int pid = fork();
+    if (pid == 0) {
+        printf("hello it's child again");
+        char *args[3];
+        args[0] = "/bin/ls";
+        args[1] = "-n";
+        args[2] = NULL;
+        execvp(args[0], args);
+    } else {
+        printf("it's parent");
+    }
     return 0;
 }
+
+// From what I can tell, one of the primary reasons there are so many variants
+// within the exec family is because they require different numbers and types of arguments
+// and they similarly offer different specifications and outputs.
