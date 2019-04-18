@@ -15,7 +15,7 @@ int main(void)
         printf("hello it's child again");
         char *args[3];
         args[0] = "/bin/ls";
-        args[1] = "-n";
+        args[1] = "/Users/lola/";
         args[2] = NULL;
         execvp(args[0], args);
     } else {
